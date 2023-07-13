@@ -1,4 +1,4 @@
-from django.shortcuts import render
+from django.shortcuts import render, redirect
 from django.conf import settings
 from rest_framework import status
 from rest_framework.permissions import IsAuthenticated
@@ -13,32 +13,35 @@ class DiseaseDetectionCreationView(APIView):
     
 
     def post(self, request, format=None):
-        
+
         user = request.user
         serializer = DetectionCreationSerializer(data=request.data,
                                                  context={'user': user})
         if serializer.is_valid(raise_exception=True):
             detection = serializer.save()
             models = prediction_models_manager.prediction_models
-            predict(models, detection)
-            return Response(detection.uuid, status=status.HTTP_200_OK)
+
+            if settings.DETECTION_IN_BACKGROUND:
+                #Add detection thread to queue/anyother
+                return Response(detection.uuid, status=status.HTTP_200_OK)
+            else:
+                predict(models, detection)
+                return redirect(f'/detection/info?uuid={detection.uuid}')
 
         return Response(serializer.errors, status=status.HTTP_400_BAD_REQUEST)
 
-    def get(self, request, format=None):
-        return render(request,'leafy/detect.html')
 
 class DetectionInformation(APIView):
     permission_classes = [IsAuthenticated]
     def get(self, request, format=None):
         user = request.user
-        serializer = DetectionValidationSerializer(data=request.data,
+        serializer = DetectionValidationSerializer(data=request.GET,
                                                context={'user': user})
         
         if not serializer.is_valid(raise_exception=True):
             return Response(serializer.errors, status=status.HTTP_400_BAD_REQUEST)
         
-        detection = Detection.objects.get(uuid=request.uuid)
+        detection = Detection.objects.get(uuid=serializer.data.get('uuid'))
         serializer = DetectionStatusSerializer(detection)
 
         return Response(serializer.data, status=status.HTTP_200_OK)
