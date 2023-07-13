@@ -71,7 +71,9 @@ class Disease(models.Model):
         unique_together = ('plant', 'keyword',)
     
 def user_directory_path(instance, filename):
-    return '{0}/{1}'.format(instance.profile.user.name, instance.uuid)
+    file_extension = filename.split(".")[-1] if filename.split(".") else ""
+    file_name = f"{instance.uuid}.{file_extension}"
+    return 'images/{0}/{1}'.format(instance.profile.user.name, file_name)
 
 class Detection(models.Model):
     profile = models.ForeignKey(Profile, on_delete=models.CASCADE, related_name='detections')

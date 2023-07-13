@@ -1,5 +1,6 @@
 from time import time
 from django.utils import timezone
+from django.core.files import File
 tensorflow_import_start = time()
 
 from .models import Plant
@@ -31,7 +32,8 @@ def load_prediction_models():
 def predict(models, detection : Detection):
     detection_start = time()
 
-    img_data = Image.open(detection.img_path.path)
+    #Load image,resize,convert to array
+    img_data = Image.open(detection.img_path.path).resize((256,256))
     img = np.array(img_data)
     img_array = tf.expand_dims(img, 0)
     
@@ -39,15 +41,21 @@ def predict(models, detection : Detection):
 
     predictions = model.predict(img_array)
     
+    #Update detection
+    #detection.img_path = File(img_data)
     detection.completion_time = timezone.now()
     detection._complete = True
 
     predicted_class = np.argmax(predictions[0])
-    confidence = round(100 * (np.max(predictions[0])), 2)
     disease = Disease.objects.filter(plant=detection.plant_type, keyword=predicted_class).first()
-    
     detection.disease_detected = disease
+
+    confidence = round(100 * (np.max(predictions[0])), 2)
     detection.confidence = confidence
+
+    #Store resized image
+    img_data.save(f"{detection.img_path.path}")
+
     detection.save()
 
     detection_end = time()
