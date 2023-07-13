@@ -110,3 +110,19 @@ class  UserPasswordResetSerializer(serializers.Serializer):
         user.set_password(password)
         user.save()
         return attrs
+    
+class UserPasswordResetTemplate(serializers.Serializer):
+    def validate(self, attrs):
+        uid = self.context.get('uid')
+        token = self.context.get('token')
+
+        id = smart_str(urlsafe_base64_decode(uid))
+
+        if not User.objects.filter(id=id).exists():
+            raise serializers.ValidationError("Invalid data")
+        
+        user = User.objects.get(id=id)
+
+        if not PasswordResetTokenGenerator().check_token(user, token):
+            raise serializers.ValidationError("Signature Error")
+        return attrs

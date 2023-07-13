@@ -1,9 +1,10 @@
 from django.contrib.auth import authenticate
+from django.shortcuts import render
 from rest_framework.response import Response
 from rest_framework import status
 from rest_framework.views import APIView
 from rest_framework.permissions import IsAuthenticated
-from .serializers import UserRegisterationSerializer, LoginSerializer, UserProfileSerializer, UserChangePasswordSerializer, SendPasswordResetEmailSerializer, UserPasswordResetSerializer
+from .serializers import UserRegisterationSerializer, LoginSerializer, UserProfileSerializer, UserChangePasswordSerializer, SendPasswordResetEmailSerializer, UserPasswordResetSerializer, UserPasswordResetTemplate
 from .renderers import UserRenderer
 from rest_framework_simplejwt.tokens import RefreshToken
 
@@ -97,3 +98,7 @@ class UserPasswordResetView(APIView):
 
         return Response(serializer.errors, status=status.HTTP_400_BAD_REQUEST)
 
+    def get(self, request, uid, token, format=None):
+        serializer = UserPasswordResetTemplate(data={},context={'uid':uid,'token': token})
+        if serializer.is_valid(raise_exception=True):
+            return render(request,'passwordreset.html',context={'post_url': f'/api/user/forgotpassword/{uid}/{token}'})

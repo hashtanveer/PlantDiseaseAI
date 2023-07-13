@@ -1,4 +1,4 @@
-from django.shortcuts import render, redirect
+from django.shortcuts import redirect
 from django.conf import settings
 from rest_framework import status
 from rest_framework.permissions import IsAuthenticated
