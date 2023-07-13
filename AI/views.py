@@ -56,3 +56,9 @@ class ListDetectionsForUser(APIView):
         detections = Detection.objects.filter(profile=profile).order_by('start_time')[skip:skip+amount]
         serializer = DetectionStatusSerializer(detections, many=True)
         return Response(serializer.data,status=status.HTTP_200_OK)
+
+class ListDetectionModels(APIView):
+    permission_classes = [IsAuthenticated]
+    def get(self, request, format=None):
+        models = prediction_models_manager.prediction_models.keys()
+        return Response({"models":models}, status=status.HTTP_200_OK)
