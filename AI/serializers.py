@@ -12,11 +12,10 @@ class DetectionCreationSerializer(serializers.ModelSerializer):
     def create(self, validated_data):
         user = self.context.get('user')
 
-        #try:
-        #    profile = user.profile
-        #except:
-        #    raise serializers.ValidationError("Anonymous User")
-        profile = user.profile
+        try:
+            profile = user.profile
+        except:
+            raise serializers.ValidationError("Anonymous User")
         
         plant_type_name = validated_data.pop('plant_type')
         try:
