@@ -6,16 +6,21 @@ from rest_framework.response import Response
 from rest_framework.views import APIView
 from .serializers import DetectionCreationSerializer, DetectionValidationSerializer, DetectionStatusSerializer
 from .models import Detection
-
+from .apps import prediction_models_manager
+from .utils import predict
 
 class DiseaseDetectionCreationView(APIView):
-    #permission_classes = [IsAuthenticated]
+    
+
     def post(self, request, format=None):
+        
         user = request.user
         serializer = DetectionCreationSerializer(data=request.data,
                                                  context={'user': user})
         if serializer.is_valid(raise_exception=True):
             detection = serializer.save()
+            models = prediction_models_manager.prediction_models
+            predict(models, detection)
             return Response(detection.uuid, status=status.HTTP_200_OK)
 
         return Response(serializer.errors, status=status.HTTP_400_BAD_REQUEST)

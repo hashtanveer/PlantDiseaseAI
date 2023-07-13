@@ -49,12 +49,13 @@ class Profile(models.Model):
 
     def reset_detections(self):
         # Reset the detection count for a new day
-        self.detections_count = 0
+        self._detections_count = 0
         self.last_reset = timezone.now()
         self.save()
 
 class Plant(models.Model):
     name = models.CharField(max_length=255)
+    prediction_model = models.FileField(upload_to='prediction_models/',null=True)
 
     def __str__(self) -> str:
         return self.name
@@ -62,10 +63,12 @@ class Plant(models.Model):
 class Disease(models.Model):
     name = models.CharField(max_length=255)
     plant = models.ForeignKey(to=Plant, on_delete=models.CASCADE, related_name='diseases')
-    keyword = models.CharField(max_length=255, blank=False, default="",unique=True)
+    keyword = models.IntegerField(blank=False, null=True)
 
     def __str__(self) -> str:
         return self.name
+    class Meta:
+        unique_together = ('plant', 'keyword',)
     
 def user_directory_path(instance, filename):
     return '{0}/{1}'.format(instance.profile.user.name, instance.uuid)
@@ -88,5 +91,11 @@ class Detection(models.Model):
     @property
     def time_taken(self):
         if self._complete:
-            return int(self.completion_time.timestamp() - self.start_time.timestamp())
+            return round(self.completion_time.timestamp() - self.start_time.timestamp(),2)
         return "Pending"
+    
+    @property
+    def disease(self):
+        if self.disease_detected:
+            return self.disease_detected.name
+        return "-"

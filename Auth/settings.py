@@ -51,7 +51,7 @@ MIDDLEWARE = [
     'django.contrib.sessions.middleware.SessionMiddleware',
     'corsheaders.middleware.CorsMiddleware',
     'django.middleware.common.CommonMiddleware',
-    'django.middleware.csrf.CsrfViewMiddleware',
+    #'django.middleware.csrf.CsrfViewMiddleware',
     'django.contrib.auth.middleware.AuthenticationMiddleware',
     'django.contrib.messages.middleware.MessageMiddleware',
     'django.middleware.clickjacking.XFrameOptionsMiddleware',
@@ -146,7 +146,7 @@ PASSWORD_RESET_TIMEOUT = 900
 
 SIMPLE_JWT = {
     "ACCESS_TOKEN_LIFETIME": timedelta(minutes=60),
-    "REFRESH_TOKEN_LIFETIME": timedelta(days=1),
+    "REFRESH_TOKEN_LIFETIME": timedelta(days=10),
 }
 
 CORS_ALLOWED_ORIGINS = [
@@ -160,3 +160,5 @@ DETECTIONS_ALLOWED_FREE = 10
 DETECTIONS_ALLOWED_PREMIUM = 50
 
 DETECTIONS_PER_PAGE = 10
+
+DETECTION_IN_BACKGROUND = False

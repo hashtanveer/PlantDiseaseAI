@@ -1,7 +1,3 @@
-{% extends 'base.html' %}
-
-
-{% block content %}
 <h2>Upload an Image</h2>
 <!-- Image Upload Form -->
 <input type="file" accept="image/*" id="imageInput">
@@ -22,13 +18,11 @@
     const access = localStorage.getItem('access_token')
 
     let newImage = await fetch(imageEndpoint,  {
-      headers: {Authorization: 'Bearer ${access}'},
+      headers: {Authorization: 'Bearer ' + access},
       method: 'POST',
       body: formData
     }).then(response => response.json()).catch(error => { console.error(error) })
 
   }
 
-</script>
-{% endblock  %}
-    
+</script>   

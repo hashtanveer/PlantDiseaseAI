@@ -7,6 +7,6 @@ class LoginView(APIView):
         return render(request, 'user/login.html')
     
 
-class HomeView(APIView):
+class HomeView(APIView): 
     def get(self, request, format=None):
         return render(request,'website/index.html')
