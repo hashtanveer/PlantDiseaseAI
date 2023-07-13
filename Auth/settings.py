@@ -154,7 +154,7 @@ CORS_ALLOWED_ORIGINS = [
     "http://127.0.0.1:80",
 ]
 
-MEDIA_ROOT =  os.path.join(BASE_DIR, 'AI','images')
+MEDIA_ROOT =  os.path.join(BASE_DIR, 'AI')
 
 DETECTIONS_ALLOWED_FREE = 10
 DETECTIONS_ALLOWED_PREMIUM = 50
