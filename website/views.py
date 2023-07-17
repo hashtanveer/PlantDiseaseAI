@@ -10,3 +10,7 @@ class LoginView(APIView):
 class HomeView(APIView): 
     def get(self, request, format=None):
         return render(request,'website/index.html')
+    
+class DetectionView(APIView):
+    def get(self, request, format=None):
+        return render(request,'website/detect.html')

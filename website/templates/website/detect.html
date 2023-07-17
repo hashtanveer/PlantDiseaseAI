@@ -1,28 +1,52 @@
-<h2>Upload an Image</h2>
-<!-- Image Upload Form -->
-<input type="file" accept="image/*" id="imageInput">
-<button onclick="createImage(event)">Submit</button>
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Navbar</title>
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css"
+        integrity="sha512-iecdLmaskl7CVkqkXNQ/ZH/XLlvWZOJyj7Yy7tcenmpD1ypASozpmT/E0iPtmFIB46ZmdtAc9eNBvH0H/ZpiBw=="
+        crossorigin="anonymous" referrerpolicy="no-referrer" />
+
+    <link rel="stylesheet" href="/static/css/detectionStyles.css">
 
 
-<script>
-  const imageEndpoint = 'http://127.0.0.1/detection/create'
+</head>
 
-  const createImage = async (event) => {
-    event.preventDefault()
-    const imageInput = document.querySelector('#imageInput')
-    let image = imageInput.files[0]
-    let formData = new FormData()
+<body>
+    <div class="navbar">
+        <header>
+            <nav>
+                <ul class="nav__links">
+                    <li><a href="/templates/SigninSignup/index.html">Home</a></li>
+                    <li><a href="/templates/SigninSignup/detection.html">Detect PlantDiseaseAI</a></li>
+                    <li><a href="/templates/SigninSignup/contact.html">Contact</a></li>
+                    <li><a href="/templates/SigninSignup/about.html">About</a></li>
+                </ul>
+            </nav>
+            <nav>
+                <a class="cta" href="#"><button style="color: white;">Profile</button></a>
+                <a class="cta" href="#"><button
+                        style="color: white;background-color: rgba(227, 3, 3, 0.997);">Logout</button></a>
+            </nav>
+        </header>
+    </div>
 
-    formData.append('img_path', image)
-    formData.append('plant_type', 'Potato')
-    const access = localStorage.getItem('access_token')
+    <div class="container">
+        <h3>Upload you file</h3>
+        <div class="drag-area">
+            <div class="icon">
+                <i class="fas fa-images"></i>
+            </div>
+            <span class="header"> Drag & Drop </span>
+            <span class="header"> or <span class="button">Browse</span></span>
+            <input id="inputImage" type="file" hidden>
+            <span class="support"> Supports: JPEG, PNG, JPG</span>
+        </div>
+    </div>
+    <div class="submit"><a class="cta" href="#"><button onclick="createImage(event)" style="color: white;">Submit</button></a></div>
+    <script src="/static/js/detectionScript.js"></script>
+</body>
 
-    let newImage = await fetch(imageEndpoint,  {
-      headers: {Authorization: 'Bearer ' + access},
-      method: 'POST',
-      body: formData
-    }).then(response => response.json()).catch(error => { console.error(error) })
-
-  }
-
-</script>   
+</html>
