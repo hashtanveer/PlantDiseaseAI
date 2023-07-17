@@ -1,21 +1,23 @@
-const Login = async (event) => {
-  event.preventDefault()
-  const loginEndpoint = 'http://127.0.0.1/api/user/signin/'
-  const email = document.getElementById('inputEmail').value
-  const password = document.getElementById('inputPassword').value
+const Submit = async (event) => {
+event.preventDefault();
+const form = document.getElementById('submit-form');
+const formData = new FormData(form);
 
-  const csrf = document.getElementsByName('csrfmiddlewaretoken')[0].value
+const json = {};
 
-  const formData = JSON.stringify({"email": email, "password": password, "csrfmiddlewaretoken" : csrf});
-  let newImage = await fetch(loginEndpoint,  {
-    headers: {"content-type": "application/json"},
-    method: 'POST',
-    body: formData
-  }).then(response => response.json())
+formData.forEach((value, key) => {
+  json[key] = value;
+});
+console.log(json);
+
+let newImage = await fetch(post_url,  {
+  method: 'POST',
+  body: formData
+}).then(response => response.json())
   .then(data =>{
     console.log(data);
-    const { sucess } = data;
-    if(!sucess){
+    const { success } = data;
+    if(!success){
         console.log({"Errors":data})
     }
     else{
@@ -26,15 +28,10 @@ const Login = async (event) => {
         localStorage.setItem('access_token', access)
         localStorage.setItem('refresh_token', refresh)
         
-        console.log("Access")
-        console.log(access)
-        console.log("Refresh")
-        console.log(refresh)
-        //if(access && refresh){
-        //    window.location.href = "{% url 'website:home' %}"
-        //}
+      if(access && refresh){
+          window.location.href = home_url
+      }
     }
   })
   .catch(error => { console.error(error) })
-
 }

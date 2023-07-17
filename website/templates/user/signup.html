@@ -5,33 +5,37 @@
     <meta charset="utf-8" />
     <title>Sign Up Form | PlantDiseaseDetector</title>
     <link rel="stylesheet" href="/static/css/style.css" />
+    <script>const post_url = "{% url 'account:register' %}";
+            const home_url = "{% url 'website:home' %}"
+    </script>
+    <script type="text/javascript"  src="/static/js/saveJWT.js"></script>
   </head>
 
   <body>
     <div class="wrapper">
       <div class="title">Sign Up</div>
-      <form action="#">
+      <form id="submit-form">
         <div class="field">
-          <input type="text" required />
+          <input name="name" type="text" required />
           <label>Name</label>
         </div>
         <div class="field">
-          <input type="text" required />
+          <input name="email" type="text" required />
           <label>Email Address</label>
         </div>
         <div class="field">
-          <input type="number" required />
-          <label>Phone Number</label>
+          <input name="password" type="password" required />
+          <label>Enter password</label>
         </div>
         <div class="field">
-          <input type="password" required />
-          <label>Password</label>
+          <input name="password2" type="password" required />
+          <label>Repeat password</label>
         </div>
         <div class="field">
-          <input type="submit" value="Login" />
+          <input type="button" onclick="Submit(event)" value="Signup" />
         </div>
         <div class="signup-link">
-          Already a member? <a href="/templates/SigninSignup/signin.html">Log in</a>
+          Already a member? <a href="{% url 'website:login' %}">Log in</a>
         </div>
       </form>
     </div>

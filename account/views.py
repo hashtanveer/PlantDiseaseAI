@@ -23,11 +23,12 @@ class UserRegisterationForm(APIView):
             user = serializer.save()
             tokens = get_tokens_for_user(user)
 
-            return Response({"msg": "Registeration Sucessful",
+            return Response({"success": True,
                              "tokens": tokens},
                             status=status.HTTP_201_CREATED)
         
-        return Response(serializer.errors,
+        return Response({"success" : False,
+                        "errors": serializer.errors},
                         status=status.HTTP_400_BAD_REQUEST)
     
 class UserLoginForm(APIView):
@@ -55,7 +56,7 @@ class UserLoginForm(APIView):
                             status=status.HTTP_404_NOT_FOUND)
         success = True
         tokens = get_tokens_for_user(user)
-        return Response({"sucess": success,
+        return Response({"success": success,
                          "tokens": tokens
                         },
                         status=status.HTTP_200_OK)

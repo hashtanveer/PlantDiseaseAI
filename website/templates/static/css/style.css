@@ -104,7 +104,7 @@
     form .content .pass-link {
       color: '';
     }
-    form .field input[type='submit'] {
+    form .field input[type='button'] {
       color: #fff;
       border: none;
       padding-left: 0;
@@ -115,7 +115,7 @@
       background: linear-gradient(-135deg, #c850c0, #4158d0);
       transition: all 0.3s ease;
     }
-    form .field input[type='submit']:active {
+    form .field input[type='button']:active {
       transform: scale(0.95);
     }
     form .signup-link {

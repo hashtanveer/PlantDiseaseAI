@@ -5,19 +5,23 @@
     <meta charset="utf-8" />
     <title>Login | PlantDiseaseDetector</title>
     <link rel="stylesheet" href="/static/css/style.css" />
+    <script>const post_url = "{% url 'account:signin' %}";
+            const home_url = "{% url 'website:home' %}"
+    </script>
+    <script type="text/javascript"  src="/static/js/saveJWT.js"></script>
   </head>
 
   <body>
     <div class="wrapper">
       <div class="title">Login</div>
-      <form action="#">
+      <form id="submit-form">
         {% csrf_token %}
         <div class="field">
-          <input id="inputEmail" type="text" required />
+          <input name="email" type="text" required />
           <label>Email Address</label>
         </div>
         <div class="field">
-          <input id="inputPassword" type="password" required />
+          <input  name="password" type="password" required />
           <label>Password</label>
         </div>
         <div class="content">
@@ -30,10 +34,10 @@
           </div>
         </div>
         <div class="field">
-          <input type="submit" value="Login" />
-        </div>
+          <input type="button"  onclick="Submit(event)" value="Login" />
+        </div> 
         <div class="signup-link">
-          Not a member? <a href="/templates/SigninSignup/signup.html">Signup now</a>
+          Not a member? <a href= "{% url 'website:register' %}">Signup now</a>
         </div>
       </form>
     </div>
