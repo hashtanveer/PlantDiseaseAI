@@ -67,9 +67,9 @@ const createImage = async (event) => {
     event.preventDefault()
     const imageEndpoint = 'http://127.0.0.1/detection/create'
     // let imageInput = document.querySelector('#inputImage');
-    // let fileInput = document.querySelector('.container .drag-area input[type="file"]');
+    let fileInput = document.querySelector('.container .drag-area input[type="file"]');
 
-    let image = file
+    let image = fileInput.files[0]
     let formData = new FormData()
 
     formData.append('img_path', image)
@@ -77,7 +77,7 @@ const createImage = async (event) => {
     const access = localStorage.getItem('access_token')
 
     let newImage = await fetch(imageEndpoint,  {
-       headers: {Authorization: 'Bearer ' + access},
+    //   headers: {Authorization: 'Bearer ' + access},
       method: 'POST',
       body: formData
     }).then(response => response.json()).catch(error => { console.error(error) })

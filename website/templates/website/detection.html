@@ -1,0 +1,26 @@
+{% extends "base.html" %}
+
+{% block header %}
+    <link rel="stylesheet" href="/static/css/detectionStyles.css">
+{% endblock  %}
+
+{% block body %}
+
+<body>
+    <div class="container">
+        <h3>Upload you file</h3>
+        <div class="drag-area">
+            <div class="icon">
+                <i class="fas fa-images"></i>
+            </div>
+            <span class="header"> Drag & Drop </span>
+            <span class="header"> or <span class="button">Browse</span></span>
+            <input id="inputImage" type="file" hidden>
+            <span class="support"> Supports: JPEG, PNG, JPG</span>
+        </div>
+    </div>
+    <div class="submit"><a class="cta" href="#"><button onclick="createImage(event)" style="color: white;">Submit</button></a></div>
+    <script src="detectionScript.js"></script>
+</body>
+
+{% endblock  %}

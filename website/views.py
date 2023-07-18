@@ -17,4 +17,8 @@ class HomeView(APIView):
     
 class DetectionView(APIView):
     def get(self, request, format=None):
-        return render(request,'website/detect.html')
+        return render(request,'website/detection.html')
+
+class AboutView(APIView):
+    def get(self, request, format=None):
+        return render(request,'website/about.html')

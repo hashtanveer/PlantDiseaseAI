@@ -6,32 +6,43 @@
   padding: 0;
   font-family: "Raleway", sans-serif;
   font-weight: 700;
-  color: white;
 }
 
-li, a, button {
+.navi li,
+.navi a,
+.navi button {
   font-size: 18px;
+  color: #24252A;
   text-decoration: none;
 }
 
 body {
   font-family: "Raleway", sans-serif;
+  color: #24252A;
   background-color: black;
   color: white;
   transform: scale(0.8);
   transform-origin: top;
   width: 125%;
   margin-left: -12.5%;
-  overflow: hidden;
+  
+}
+html{
+  height: 100%;
+  margin: 0;
+  padding: 0;
 }
 
-h2, p {
+.nav__links li a,
+.card-text,
+.card-header {
   color: white;
   font-weight: bold;
 }
 
 button {
-  color: #24252A;
+  color: #24252A; /* Change to the desired button text color */
+  /* Add any specific styling for the buttons here */
 }
 
 header {
@@ -71,7 +82,7 @@ button {
 }
 
 button:hover {
-  background-color: rgba(8, 64, 78, 0.8);
+  background-color: rgba(17, 82, 98, 0.8);
 }
 
 .container {
@@ -79,8 +90,7 @@ button:hover {
   max-height: 400px;
   width: 100%;
   padding: 30px;
-  background: grey;
-  color: black;
+  background: #fff;
   border-radius: 30px;
   box-shadow: rgba(149, 157, 165, 0.2) 0px 8px 24px;
   margin: 0 auto;
@@ -90,48 +100,43 @@ button:hover {
   justify-content: center;
 }
 
-.container h3, .container-contact h3 {
+.container h3 {
   margin-bottom: 20px;
   font-weight: 900;
-  background-color: transparent;
-  color: black;
 }
 
 .drag-area {
   height: 400px;
-  width: 95%;
-  border:3px dashed black;
+  width: 90%;
+  border: 4px dashed #b2b3b4;
   display: flex;
   align-items: center;
   justify-content: center;
   flex-direction: column;
   margin: 10px;
-  border-radius: 30px;
 }
 
 .drag-area .icon {
   font-size: 50px;
-  color: rgb(0, 0, 0);
+  color: rgba(0, 136, 169, 1);
 }
 
 .drag-area .header {
   font-size: 20px;
   font-weight: 900;
-  color: #000000;
+  color: #24252A;
 }
 
 .drag-area .support {
-  font-size: 16px;
-  color: rgb(49, 47, 47);
+  font-size: 12px;
+  color: gray;
   margin: 10px 0 15px 0;
 }
 
 .drag-area .button {
   font-size: 20px;
   font-weight: 900;
-  color: black;
-  text-decoration: underline;
-  text-decoration-color: rgb(4, 4, 5);
+  color: rgba(0, 136, 169, 1);
   cursor: pointer;
 }
 
@@ -142,7 +147,7 @@ button:hover {
 .drag-area img {
   width: 100%;
   height: 100%;
-  object-fit:cover;
+  object-fit: cover;
 }
 
 .submit {
@@ -152,20 +157,50 @@ button:hover {
   margin-top: 20px;
 }
 
+.grid {
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  flex-wrap: wrap;
+}
+
+.grid-item {
+  margin: 10px;
+  flex: 0 0 calc(18% - 20px);
+  margin: 10px;
+  height: 20%;
+}
+
 .card {
+  display: grid;
+  grid-template-columns: 100%;
+  grid-template-rows: 130px 260px 5px;
+  grid-template-areas: "image" "text";
   border-radius: 30px;
   background: black;
   box-shadow: rgba(196, 199, 203, 0.2) 0px 8px 24px;
   text-align: center;
-  margin-top: 5%;
+  transition: 0.3s ease;
+  cursor: pointer;
   border: 4px solid gray;
-  width: 120%; /* Each card takes one-third of the available width */
 }
 
+.card-img {
+  width: 100%;
+  max-height: 130px; /* Adjust the value as needed */
+  object-fit: cover;
+  border-top-left-radius: 30px;
+  border-top-right-radius: 30px;
+}
+
+
 .card-text {
+  grid-area: text;
   margin: 10px;
   height: 100%;
+  /* overflow: auto; */
 }
+
 
 .card p {
   color: grey;
@@ -179,88 +214,55 @@ button:hover {
   text-overflow: ellipsis;
   white-space: nowrap;
   max-width: 100%;
+  /* margin-top: 0px; */
   font-size: 16px;
 }
 
 .card:hover {
-  box-shadow: rgba(255, 255, 255, 0.2) 0px 8px 24px;
+  transform: scale(1.1);
+  box-shadow: rgba(149, 157, 165, 0.2) 0px 8px 24px;
 }
 
 .card-content {
   margin-top: 10px;
 }
 
-.dropdown {
-  width: 100%;
-  padding: 10px;
-  font-size: 25px;
-  border: 5px solid #ffffff;
-  border-radius: 30px;
+.footer {
   background-color: gray;
-  color: #000000;
-}
-
-.dropdown:hover, .dropdown:focus {
-  border-color: #0088a9;
-  outline: none;
-  cursor: pointer;
-}
-
-.dropdown:disabled {
-  opacity: 0.5;
-  cursor: not-allowed;
-}
-
-.dropdown option {
-  color: black;
+  color:rgb(0, 0, 0);
+  padding: 20px;
   text-align: center;
-  font-size: 25px;
 }
 
-.sidebyside {
+.footer p {
+  margin: 0;
+}
+
+.container {
+  max-width: 1200px;
+  margin: 0 auto;
+}
+
+.footer-content {
   display: flex;
   justify-content: space-between;
 }
 
-.newthing {
-  border-radius: 30px;
-  background: black;
-  box-shadow: rgba(196, 199, 203, 0.2) 0px 8px 24px;
-  text-align: center;
-  margin-top: 5%;
-  border: 4px solid gray;
-  width: 120%; /* Each card takes one-third of the available width */
-  margin-right: 50%;
+.footer-column {
+  flex: 1;
+}
+.footer-column ul {
+  list-style: none;
+  text-align: left;
 }
 
-.newthing-text {
-  margin: 10px;
-  height: 100%;
+.footer-column ul li {
+  margin-bottom: 10px;
 }
 
-.newthing p {
-  color: grey;
-  font-size: 10px;
-  font-weight: 700;
-  font-size: 14px;
+.footer-column:last-child ul {
+  text-align: right;
 }
-
-.newthing-text h2 {
-  overflow: hidden;
-  text-overflow: ellipsis;
-  white-space: nowrap;
-  max-width: 100%;
-  font-size: 16px;
-}
-
-.newthing:hover {
-  box-shadow: rgba(255, 255, 255, 0.2) 0px 8px 24px;
-}
-
-.newthing-content {
-  margin-top: 10px;
-}
-
-.grid-item {
-  align-items: center;
+.footer-column a {
+  color: black; /* Set the link color to black */
 }
