@@ -1,69 +1,74 @@
 {% extends 'base.html' %}
 {% block title %}
-  Detect
+Detect
 {% endblock %}
 {% block header %}
-  <link rel="stylesheet" href="/static/css/detectionStyles.css" />
-  <script>
-    const createUrl = "{% url 'AI:create' %}";
-    const modelsUrl = "{% url 'AI:models' %}";
-  </script>
+<link rel="stylesheet" href="/static/css/detectionStyles.css" />
+<script>
+  const createUrl = "{% url 'AI:create' %}";
+  const modelsUrl = "{% url 'AI:models' %}";
+</script>
 {% endblock %}
 
 {% block body %}
-  <body>
-    <div style="background-color: gray;">
-      <br />
-      <p align="center" style="color: black;">
-        Welcome to CropDiseaseAI <br />
-        Here with our highly accurate predicting models, you can get to know whether your crop is healthy or has any kind of disease.
-      </p>
-      <br />
-    </div>
-    <div class="sidebyside">
-      <div class="grid-item">
-        <div class="card">
+
+<body>
+  <div style="background-color: gray;">
+    <br />
+    <p align="center" style="color: black;">
+      Welcome to CropDiseaseAI <br />
+      Here with our highly accurate predicting models, you can get to know whether your crop is healthy or has any kind
+      of disease.
+    </p>
+    <br />
+  </div>
+  <div class="sidebyside">
+    <div class="grid-item">
+      <div class="card">
+        <div class="card-content">
           <div class="card-content">
-            <div class="card-content">
-              <h2 class="card-header" style="font-size: large;">Choose your Crop</h2>
-            </div>
-            <p class="card-text">
-              <select class="dropdown" style="font-size: large;" id="crops-dropdown" onload="loadModels()">
-                
-              </select>
-            </p>
+            <h2 class="card-header" style="font-size: large;">Choose your Crop</h2>
           </div>
-        </div>
-      </div>
-      <div class="container">
-        <h3>Upload your file</h3>
-        <div class="drag-area">
-          <div class="icon">
-            <i class="fas fa-images"></i>
-          </div>
-          <span class="header">Drag & Drop</span>
-          <span class="header">or <span class="button">Browse</span></span>
-          <input id="inputImage" type="file" hidden />
-          <span class="support">Supports: JPEG, PNG, JPG</span>
-        </div>
-      </div>
-      <div class="grid-item">
-        <div class="newthing">
-          <div class="newthing-text">
-            <h2 style="font-size: xx-large;" id="diseaseHolder"></h2>
-          </div>
-        </div>
-        <div class="newthing">
-          <div class="newthing-text">
-            <h2 style="font-size: large;">Tip:</h2>
-            <p style="font-size: small;">Buy a land far away from the road, stranger's piss can spread deadly diseases among this crop</p>
-          </div>
+          <p class="card-text">
+            <select class="dropdown" style="font-size: large;" id="crops-dropdown" onload="loadModels()">
+
+            </select>
+          </p>
         </div>
       </div>
     </div>
-    <div class="submit">
-      <a class="cta" href="#"><button onclick="createImage(event)" style="color: white;">Submit</button></a>
+    <div class="container">
+      <h3>Upload your file</h3>
+      <div class="drag-area">
+        <div class="icon">
+          <i class="fas fa-images"></i>
+        </div>
+        <span class="header">Drag & Drop</span>
+        <span class="header">or <span class="button">Browse</span></span>
+        <input id="inputImage" type="file" hidden />
+        <span class="support">Supports: JPEG, PNG, JPG</span>
+      </div>
     </div>
-    <script src="/static/js/detectionScript.js"></script>
-  </body>
+    <div class="grid-item">
+      <div class="newthing">
+        <div class="newthing-text">
+          <h2 style="font-size: xx-large;" id="diseaseHolder"></h2>
+        </div>
+      </div>
+      <div class="newthing">
+        <div class="newthing-text">
+          <h2 style="font-size: large;">Tip:</h2>
+          <p style="font-size: small;">Buy a land far away from the road, stranger's piss can spread deadly diseases
+            among this crop</p>
+        </div>
+      </div>
+    </div>
+  </div>
+  <div class="submit">
+    <a class="cta" href="#"><button style="color: white; background-color: rgba(227, 3, 3, 0.997); margin-right: 20px;"
+        class="navi reset-button">Reset</button></a>
+    <a class="cta" href="#"><button onclick="createImage(event)" style="color: white;">Submit</button></a>
+  </div>
+  <script src="/static/js/detectionScript.js"></script>
+</body>
 {% endblock %}

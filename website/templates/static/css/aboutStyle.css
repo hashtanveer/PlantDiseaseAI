@@ -1,0 +1,155 @@
+@import url('https://fonts.googleapis.com/css2?family=Raleway:wght@700&display=swap');
+
+* {
+  box-sizing: border-box;
+  margin: 0;
+  padding: 0;
+  font-family: "Raleway", sans-serif;
+  font-weight: 700;
+
+}
+
+.navi li,
+.navi a,
+.navi button {
+  font-size: 18px;
+  color: #24252A;
+  text-decoration: none;
+}
+
+body {
+  font-family: "Raleway", sans-serif;
+  color: #24252A;
+  background-color: black;
+  color: white;
+  transform: scale(0.8);
+  transform-origin: top;
+  width: 125%;
+  margin-left: -12.5%;
+  overflow: hidden;
+}
+
+html{
+  height: 100%;
+  margin: 0;
+  padding: 0;
+}
+
+.nav__links li a,
+.card-text,
+.card-header {
+  color: white;
+  font-weight: bold;
+}
+
+button {
+  color: #24252A;
+}
+
+header {
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  padding: 30px 5%;
+}
+
+.nav__links {
+  list-style: none;
+  display: flex;
+  align-items: center;
+}
+
+.nav__links li {
+  padding: 0px 10px;
+  margin-right: 10px;
+}
+
+.nav__links li a {
+  transition: all 0.3s ease 0s;
+}
+
+.nav__links li a:hover {
+  color: #0088a9;
+}
+
+button {
+  padding: 9px 25px;
+  background-color: rgba(0, 136, 169, 1);
+  border: none;
+  border-radius: 50px;
+  cursor: pointer;
+  transition: all 0.3s ease 0s;
+  margin-left: auto;
+}
+
+button:hover {
+  background-color: rgba(17, 82, 98, 0.8);
+}
+
+.grid {
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  flex-wrap: wrap;
+}
+
+.grid-item {
+  margin: 10px;
+  flex: 0 0 calc(19% - 20px);
+  height: 20%;
+}
+
+.card {
+  display: grid;
+  grid-template-columns: 100%;
+  grid-template-rows: 110px 200px 4px;
+  grid-template-areas: "image" "text";
+  border-radius: 30px;
+  background: black;
+  box-shadow: rgba(196, 199, 203, 0.2) 0px 8px 24px;
+  text-align: center;
+  transition: 0.3s ease;
+  cursor: pointer;
+  border: 4px solid gray;
+}
+
+.card-img {
+  width: 100%;
+  max-height: 130px; /* Adjust the value as needed */
+  object-fit: cover;
+  border-top-left-radius: 30px;
+  border-top-right-radius: 30px;
+}
+
+.card-text {
+  grid-area: text;
+  margin: 10px;
+  height: 100%;
+  /* overflow: auto; */
+}
+
+
+.card p {
+  color: grey;
+  font-size: 10px;
+  font-weight: 700;
+  font-size: 14px;
+}
+
+.card-text h2 {
+  overflow: hidden;
+  text-overflow: ellipsis;
+  white-space: nowrap;
+  max-width: 100%;
+  /* margin-top: 0px; */
+  font-size: 16px;
+}
+
+.card:hover {
+  transform: scale(1.1);
+  box-shadow: rgba(149, 157, 165, 0.2) 0px 8px 24px;
+}
+
+.card-content {
+  margin-top: 20px;
+}
