@@ -4,6 +4,10 @@
 {% endblock %}
 {% block header %}
   <link rel="stylesheet" href="/static/css/detectionStyles.css" />
+  <script>
+    const createUrl = "{% url 'AI:create' %}";
+    const modelsUrl = "{% url 'AI:models' %}";
+  </script>
 {% endblock %}
 
 {% block body %}
@@ -24,16 +28,8 @@
               <h2 class="card-header" style="font-size: large;">Choose your Crop</h2>
             </div>
             <p class="card-text">
-              <select class="dropdown" style="font-size: large;">
-                <option value="option1" style="font-size: small;">Apple</option>
-                <option value="option2" style="font-size: small;">Blueberry</option>
-                <option value="option3" style="font-size: small;">Corn</option>
-                <option value="option4" style="font-size: small;">Grapes</option>
-                <option value="option5" style="font-size: small;">Orange</option>
-                <option value="option6" style="font-size: small;">Peaches</option>
-                <option value="option7" style="font-size: small;">Potato</option>
-                <option value="option8" style="font-size: small;">Strawberry</option>
-                <option value="option9" style="font-size: small;">Tomato</option>
+              <select class="dropdown" style="font-size: large;" id="crops-dropdown" onload="loadModels()">
+                
               </select>
             </p>
           </div>
@@ -54,7 +50,7 @@
       <div class="grid-item">
         <div class="newthing">
           <div class="newthing-text">
-            <h2 style="font-size: xx-large;">Healthy</h2>
+            <h2 style="font-size: xx-large;" id="diseaseHolder"></h2>
           </div>
         </div>
         <div class="newthing">
