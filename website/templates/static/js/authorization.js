@@ -5,7 +5,7 @@ const refreshToken = localStorage.getItem('refresh_token');
 // Get the current page URL
 const currentPageUrl = window.location.href;
 
-if ((!accessToken || !refreshToken) && !currentPageUrl.includes('/login')) {
+if ((!accessToken || !refreshToken) && !currentPageUrl.includes(loginUrl)) {
   // Access token or refresh token is missing and the current page is not the login page,
   // redirect to the login page
   window.location.href = loginUrl;
@@ -28,7 +28,7 @@ if ((!accessToken || !refreshToken) && !currentPageUrl.includes('/login')) {
     // Access token is expired, renew it using the refresh token
     // Send a request to your Django backend to renew the access token
     // Example using fetch API:
-    fetch('/api/user/refresh/', {
+    fetch(tokenRefresh, {
       method: 'POST',
       headers: {
         'Content-Type': 'application/json',
