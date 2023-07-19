@@ -1,26 +1,73 @@
-{% extends "base.html" %}
-
+{% extends 'base.html' %}
+{% block title %}
+  Detect
+{% endblock %}
 {% block header %}
-    <link rel="stylesheet" href="/static/css/detectionStyles.css">
-{% endblock  %}
+  <link rel="stylesheet" href="/static/css/detectionStyles.css" />
+{% endblock %}
 
 {% block body %}
-
-<body>
-    <div class="container">
-        <h3>Upload you file</h3>
-        <div class="drag-area">
-            <div class="icon">
-                <i class="fas fa-images"></i>
-            </div>
-            <span class="header"> Drag & Drop </span>
-            <span class="header"> or <span class="button">Browse</span></span>
-            <input id="inputImage" type="file" hidden>
-            <span class="support"> Supports: JPEG, PNG, JPG</span>
-        </div>
+  <body>
+    <div style="background-color: gray;">
+      <br />
+      <p align="center" style="color: black;">
+        Welcome to CropDiseaseAI <br />
+        Here with our highly accurate predicting models, you can get to know whether your crop is healthy or has any kind of disease.
+      </p>
+      <br />
     </div>
-    <div class="submit"><a class="cta" href="#"><button onclick="createImage(event)" style="color: white;">Submit</button></a></div>
+    <div class="sidebyside">
+      <div class="grid-item">
+        <div class="card">
+          <div class="card-content">
+            <div class="card-content">
+              <h2 class="card-header" style="font-size: large;">Choose your Crop</h2>
+            </div>
+            <p class="card-text">
+              <select class="dropdown" style="font-size: large;">
+                <option value="option1" style="font-size: small;">Apple</option>
+                <option value="option2" style="font-size: small;">Blueberry</option>
+                <option value="option3" style="font-size: small;">Corn</option>
+                <option value="option4" style="font-size: small;">Grapes</option>
+                <option value="option5" style="font-size: small;">Orange</option>
+                <option value="option6" style="font-size: small;">Peaches</option>
+                <option value="option7" style="font-size: small;">Potato</option>
+                <option value="option8" style="font-size: small;">Strawberry</option>
+                <option value="option9" style="font-size: small;">Tomato</option>
+              </select>
+            </p>
+          </div>
+        </div>
+      </div>
+      <div class="container">
+        <h3>Upload your file</h3>
+        <div class="drag-area">
+          <div class="icon">
+            <i class="fas fa-images"></i>
+          </div>
+          <span class="header">Drag & Drop</span>
+          <span class="header">or <span class="button">Browse</span></span>
+          <input id="inputImage" type="file" hidden />
+          <span class="support">Supports: JPEG, PNG, JPG</span>
+        </div>
+      </div>
+      <div class="grid-item">
+        <div class="newthing">
+          <div class="newthing-text">
+            <h2 style="font-size: xx-large;">Healthy</h2>
+          </div>
+        </div>
+        <div class="newthing">
+          <div class="newthing-text">
+            <h2 style="font-size: large;">Tip:</h2>
+            <p style="font-size: small;">Buy a land far away from the road, stranger's piss can spread deadly diseases among this crop</p>
+          </div>
+        </div>
+      </div>
+    </div>
+    <div class="submit">
+      <a class="cta" href="#"><button onclick="createImage(event)" style="color: white;">Submit</button></a>
+    </div>
     <script src="/static/js/detectionScript.js"></script>
-</body>
-
-{% endblock  %}
+  </body>
+{% endblock %}

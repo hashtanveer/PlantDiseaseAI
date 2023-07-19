@@ -88,6 +88,9 @@ button:hover {
   flex-direction: column;
   align-items: center;
   justify-content: center;
+  margin: 0 auto;
+  margin-top: 50px; /* Adjust this value as needed */
+  height: 450px; /* Adjust the height as needed */
 }
 
 .container h3, .container-contact h3 {
@@ -98,7 +101,7 @@ button:hover {
 }
 
 .drag-area {
-  height: 400px;
+  height: 88%;
   width: 95%;
   border:3px dashed black;
   display: flex;
@@ -174,12 +177,12 @@ button:hover {
   font-size: 14px;
 }
 
-.card-text h2 {
+.card-header h2 {
   overflow: hidden;
   text-overflow: ellipsis;
   white-space: nowrap;
   max-width: 100%;
-  font-size: 16px;
+  font-size: 12px !important;
 }
 
 .card:hover {
@@ -264,3 +267,23 @@ button:hover {
 .grid-item {
   align-items: center;
 }
+
+/* Existing CSS styles */
+
+.grid-item {
+  display: flex !important;
+  flex-direction: column !important;
+  flex: 1 !important;
+}
+
+.card,
+.newthing {
+  margin-top: 10%;;
+  height: 30% !important;
+  width: 70% !important;
+}
+
+.newthing{
+  margin-right: 4%;
+}
+/* Existing CSS styles */
