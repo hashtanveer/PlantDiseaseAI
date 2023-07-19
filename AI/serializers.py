@@ -54,7 +54,8 @@ class DetectionValidationSerializer(serializers.ModelSerializer):
 class DetectionStatusSerializer(serializers.ModelSerializer):
     uuid = serializers.UUIDField()
     plant = serializers.CharField(source='plant_type.name')
+    disease = serializers.CharField(source='disease_detected.name')
 
     class Meta:
         model = Detection
-        exclude = ['img_path', 'profile','plant_type']
+        exclude = ['img_path', 'profile','plant_type', 'disease_detected']
